@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem D:\\\\fobox -ErrorAction SilentlyContinue; if \\(-not \\(Test-Path \"D:\\\\fobox\"\\)\\) { Write-Host \"Directory does not exist\" })"
+    ]
+  }
+}
