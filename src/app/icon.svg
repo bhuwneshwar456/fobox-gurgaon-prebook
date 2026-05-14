@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Warm paper background -->
+  <rect width="64" height="64" rx="12" fill="#FBF7F1"/>
+
+  <!-- Steam curls — turmeric, hand-drawn feel -->
+  <g stroke="#E8A317" stroke-width="2.5" stroke-linecap="round" fill="none">
+    <path d="M22 22 C 20 18, 24 16, 22 12"/>
+    <path d="M32 22 C 30 18, 34 16, 32 12"/>
+    <path d="M42 22 C 40 18, 44 16, 42 12"/>
+  </g>
+
+  <!-- Bowl — ink, rounded -->
+  <path
+    d="M 10 32 L 54 32 Q 54 52, 44 54 L 20 54 Q 10 52, 10 32 Z"
+    fill="#14110F"
+  />
+
+  <!-- Bowl rim highlight -->
+  <line x1="10" y1="32" x2="54" y2="32" stroke="#14110F" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Small turmeric accent inside bowl (dal/food hint) -->
+  <ellipse cx="32" cy="38" rx="14" ry="2" fill="#E8A317" opacity="0.4"/>
+</svg>

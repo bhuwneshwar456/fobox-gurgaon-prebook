@@ -1,7 +1,23 @@
 {
   "permissions": {
     "allow": [
-      "PowerShell(Get-ChildItem D:\\\\fobox -ErrorAction SilentlyContinue; if \\(-not \\(Test-Path \"D:\\\\fobox\"\\)\\) { Write-Host \"Directory does not exist\" })"
+      "PowerShell(Get-ChildItem D:\\\\fobox -ErrorAction SilentlyContinue; if \\(-not \\(Test-Path \"D:\\\\fobox\"\\)\\) { Write-Host \"Directory does not exist\" })",
+      "PowerShell(cd D:\\\\fobox; Get-ChildItem -Recurse -Depth 2 | Where-Object { -not $_.FullName.Contains\\(\"node_modules\"\\) -and -not $_.FullName.Contains\\(\".git\"\\) } | Select-Object FullName)",
+      "Bash(dir \"D:\\\\\\\\fobox\")",
+      "Bash(npx prisma *)",
+      "Bash(npx tsc *)",
+      "Bash(node *)",
+      "Bash(DATABASE_URL=\"postgresql://postgres:password@localhost:5432/fobox\" npx prisma generate)",
+      "PowerShell(cd D:\\\\fobox; $env:DATABASE_URL = \"postgresql://postgres:password@localhost:5432/fobox\"; npx prisma generate 2>&1)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/)",
+      "PowerShell(Out-Null *)",
+      "Bash(DATABASE_URL=\"postgresql://postgres:password@localhost:5432/fobox\" npm run dev -- --port 3001)",
+      "Bash(curl -s http://localhost:3001/)",
+      "Bash(curl -s -o /dev/null -w \"/ %{http_code}\\\\n/checkout/calm %{http_code}\\\\n\" http://localhost:3001/ http://localhost:3001/checkout/calm)",
+      "Bash(curl -s -o /dev/null -w \"/plans/calm %{http_code}\\\\n\" http://localhost:3001/plans/calm)",
+      "Bash(curl *)",
+      "Bash(npx next *)",
+      "PowerShell(Get-NetTCPConnection *)"
     ]
   }
 }

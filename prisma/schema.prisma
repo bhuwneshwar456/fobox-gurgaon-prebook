@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model PreBooking {
+  id String @id @default(cuid())
+
+  email     String?
+  name      String
+  phone     String
+  sector    String
+  plan      String
+  dietType  String?
+  allergies String? @db.Text
+
+  amount            Int       @default(99)
+  status            String    @default("pending")
+  razorpayOrderId   String    @unique
+  razorpayPaymentId String?
+  paidAt            DateTime?
+  refundedAt        DateTime?
+
+  whatsappJoined Boolean   @default(false)
+  emailsSent     Int       @default(0)
+  lastEmailAt    DateTime?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  referrer    String?
+
+  @@index([phone])
+  @@index([status])
+  @@index([plan])
+}
+
+model Counter {
+  id          String   @id @default("global")
+  totalSpots  Int      @default(500)
+  spotsTaken  Int      @default(347)
+  seed        Int      @default(347)
+  lastUpdated DateTime @default(now())
+}
