@@ -6,8 +6,8 @@ import { Container } from "@/components/ui/Container";
 const steps = [
   {
     number: "01",
-    title: "Pay ₹99 today",
-    desc: "Lock in your plan and your price for 12 months. Fully refundable if we don't launch.",
+    title: "Reserve your spot",
+    desc: "Lock in your plan and your price for 12 months. Free to register &mdash; no payment today.",
   },
   {
     number: "02",

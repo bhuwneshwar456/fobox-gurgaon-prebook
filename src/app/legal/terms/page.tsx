@@ -32,25 +32,25 @@ export default function TermsPage() {
           <div className="prose-fobox flex flex-col gap-6 text-ink-2" style={{ fontSize: "1.05rem", lineHeight: 1.7 }}>
             <p>Last updated: May 2026</p>
             <p>
-              By paying the ₹99 pre-booking deposit, you agree to the following terms. Please read these carefully.
+              By registering as a founding member, you agree to the following terms. Please read these carefully.
             </p>
             <h2 style={{ fontFamily: "var(--font-fraunces), Georgia, serif", color: "var(--ink)", fontSize: "1.4rem", fontWeight: 500 }}>
               1. The Pre-Booking
             </h2>
             <p>
-              The ₹99 payment is a refundable pre-booking deposit, not a subscription payment. It secures your spot as a founding member of fobox and locks your pricing for 12 months from your first delivery.
+              Registration as a founding member is free. It secures your spot and locks your pricing for 12 months from your first delivery. Payment is collected only at launch.
             </p>
             <h2 style={{ fontFamily: "var(--font-fraunces), Georgia, serif", color: "var(--ink)", fontSize: "1.4rem", fontWeight: 500 }}>
               2. Founding Member Pricing
             </h2>
             <p>
-              Founding members who pay the ₹99 deposit receive 50% off the standard per-meal price for 12 months from their first delivery. The ₹99 deposit is credited against your first bill — you do not pay it again at launch. The locked price applies to your chosen plan. Plan changes after launch may affect pricing. Members may cancel anytime with 7 days notice. Members may hold up to 30 meals per month with advance notice.
+              Founding members receive 50% off the standard per-meal price for 12 months from their first delivery. The locked price applies to your chosen plan. Plan changes after launch may affect pricing. Members may cancel anytime with 7 days notice. Members may hold up to 30 meals per month with advance notice.
             </p>
             <h2 style={{ fontFamily: "var(--font-fraunces), Georgia, serif", color: "var(--ink)", fontSize: "1.4rem", fontWeight: 500 }}>
               3. Launch Timeline
             </h2>
             <p>
-              fobox intends to launch by 1 September 2026. If we are unable to launch by this date, all pre-booking deposits will be fully refunded within 7 business days.
+              fobox intends to launch by 1 September 2026.
             </p>
             <h2 style={{ fontFamily: "var(--font-fraunces), Georgia, serif", color: "var(--ink)", fontSize: "1.4rem", fontWeight: 500 }}>
               4. Subscription Terms

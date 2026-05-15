@@ -69,7 +69,7 @@ export default async function PlanPage({ params }: PlanPageProps) {
                     style={{ borderBottom: "1.5px solid var(--border-strong)" }}
                   >
                     <span className="text-xs uppercase tracking-widest font-medium" style={{ fontFamily: "var(--font-geist-mono), monospace", color: "var(--turmeric)" }}>
-                      ◆ launch offer · 50% off · 12 months
+                      ◆ launch offer &middot; 50% off &middot; 12 months
                     </span>
                   </div>
                   <div className="flex items-end gap-4 flex-wrap">
@@ -110,7 +110,7 @@ export default async function PlanPage({ params }: PlanPageProps) {
                   <div className="flex flex-col gap-1">
                     <p className="text-ink-2 text-sm">
                       <span style={{ fontFamily: "var(--font-geist-mono), monospace" }}>₹{plan.monthlyEarlyBird.toLocaleString("en-IN")}/month</span>
-                      {" "}· 50 meals
+                      {" "}&middot; 50 meals
                     </p>
                     <p className="text-sm font-semibold" style={{ color: "var(--mint)" }}>
                       Save ₹{((plan.monthlyFull - plan.monthlyEarlyBird) * 12).toLocaleString("en-IN")} over 12 months
@@ -120,10 +120,10 @@ export default async function PlanPage({ params }: PlanPageProps) {
 
                 <Link href={`/checkout/${plan.slug}`} className="no-underline">
                   <Button variant={btnVariantMap[slug as PlanSlug]} size="lg">
-                    Lock {plan.name} — ₹99
+                    Lock {plan.name} &mdash; free
                   </Button>
                 </Link>
-                <p className="text-ink-3 text-sm">₹99 adjusts against first bill · Hold any meal · Cancel anytime · Launches 1 Sep 2026</p>
+                <p className="text-ink-3 text-sm">Free to register &middot; Hold any meal &middot; Cancel anytime &middot; Launches 1 Sep 2026</p>
               </div>
               <FoodPhoto
                 alt={plan.imageAlt}
@@ -183,7 +183,7 @@ export default async function PlanPage({ params }: PlanPageProps) {
               </div>
             </div>
             <p className="text-ink-3 text-xs mt-8" style={{ fontFamily: "var(--font-geist-mono), monospace" }}>
-              Dishes rotate regularly · Menu finalised closer to launch
+              Dishes rotate regularly &middot; Menu finalised closer to launch
             </p>
           </Container>
         </section>
@@ -309,19 +309,19 @@ export default async function PlanPage({ params }: PlanPageProps) {
                     color: "var(--turmeric)",
                   }}
                 >
-                  50% off — launch offer only.
+                  50% off &mdash; launch offer only.
                 </p>
                 <p className="text-paper/70 mt-1">
-                  ₹{plan.earlyBirdPerMeal}/meal · ₹{plan.monthlyEarlyBird.toLocaleString("en-IN")}/month · Launches 1 Sep 2026
+                  ₹{plan.earlyBirdPerMeal}/meal &middot; ₹{plan.monthlyEarlyBird.toLocaleString("en-IN")}/month &middot; Launches 1 Sep 2026
                 </p>
                 <p className="font-semibold mt-1" style={{ color: "var(--turmeric)" }}>
                   Save ₹{((plan.monthlyFull - plan.monthlyEarlyBird) * 12).toLocaleString("en-IN")} over 12 months
                 </p>
-                <p className="text-paper/50 text-sm mt-1">₹99 adjusts against first bill · Hold meals · Cancel anytime · Full refund if no launch</p>
+                <p className="text-paper/50 text-sm mt-1">Free to register &middot; Hold meals &middot; Cancel anytime &middot; Price locked for 12 months</p>
               </div>
               <Link href={`/checkout/${plan.slug}`} className="no-underline flex-shrink-0">
                 <Button variant={btnVariantMap[slug as PlanSlug]} size="lg" className="text-lg">
-                  Lock {plan.name} — ₹99
+                  Lock {plan.name} &mdash; free
                 </Button>
               </Link>
             </div>
@@ -332,7 +332,7 @@ export default async function PlanPage({ params }: PlanPageProps) {
         <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-ink border-t border-ink p-4">
           <Link href={`/checkout/${plan.slug}`} className="no-underline">
             <Button variant={btnVariantMap[slug as PlanSlug]} size="lg" fullWidth>
-              Lock {plan.name} — ₹99 · 50% OFF
+              Lock {plan.name} &mdash; free &middot; 50% OFF
             </Button>
           </Link>
         </div>

@@ -70,7 +70,7 @@ export function Header() {
         {/* CTA — desktop only */}
         <Link href="/checkout/daily" className="hidden md:inline-flex flex-shrink-0 no-underline">
           <Button variant="primary" size="sm">
-            Pre-book — ₹99
+            Reserve for free
           </Button>
         </Link>
 
@@ -80,7 +80,7 @@ export function Header() {
           className="md:hidden flex-shrink-0 no-underline text-xs font-medium text-paper px-3 py-2 rounded-[8px]"
           style={{ backgroundColor: "var(--ink)" }}
         >
-          Pre-book ₹99
+          Reserve free
         </Link>
       </div>
 
@@ -104,7 +104,7 @@ export function Header() {
           ))}
           <Link href="/checkout/daily" onClick={() => setMenuOpen(false)}>
             <Button variant="primary" size="md" fullWidth>
-              Pre-book — ₹99
+              Reserve for free
             </Button>
           </Link>
         </div>
@@ -112,3 +112,4 @@ export function Header() {
     </header>
   );
 }
+

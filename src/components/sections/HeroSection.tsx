@@ -24,7 +24,7 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={transition(0)}
             >
-              <EyebrowTag>GURGAON · LAUNCHING 1 SEPTEMBER 2026</EyebrowTag>
+              <EyebrowTag>GURGAON &middot; LAUNCHING 1 SEPTEMBER 2026</EyebrowTag>
             </motion.div>
 
             <motion.h1
@@ -66,7 +66,7 @@ export function HeroSection() {
                 className="font-medium uppercase tracking-widest text-xs mb-2"
                 style={{ fontFamily: "var(--font-geist-mono), monospace", color: "var(--turmeric)" }}
               >
-                launch offer · founding members only
+                launch offer &middot; founding members only
               </p>
               <p
                 className="text-ink"
@@ -77,10 +77,10 @@ export function HeroSection() {
                   lineHeight: 1.2,
                 }}
               >
-                50% off every meal — for 12 months.
+                50% off every meal &mdash; for 12 months.
               </p>
               <p className="text-ink-3 text-sm mt-1.5">
-                Pay ₹99 today — it adjusts against your first bill. Full refund if we don&apos;t launch by 1 Sep 2026.
+                Reserve your spot for free &mdash; no payment today. Price locked for 12 months from first delivery.
               </p>
             </motion.div>
 
@@ -92,14 +92,14 @@ export function HeroSection() {
             >
               <Link href="/checkout/daily" className="no-underline w-full sm:w-auto">
                 <Button variant="primary" size="lg" fullWidth className="sm:w-auto">
-                  Lock my plan — ₹99
+                  Lock my plan &mdash; free
                 </Button>
               </Link>
               <Link
                 href="#how-it-works"
                 className="text-ink-2 hover:text-ink font-medium flex items-center gap-1.5 transition-colors no-underline text-base"
               >
-                See how it works →
+                See how it works &rarr;
               </Link>
             </motion.div>
 
@@ -109,10 +109,10 @@ export function HeroSection() {
               transition={transition(0.45)}
               className="flex items-center gap-2 flex-wrap"
             >
-              <span className="text-ink-3 text-sm">Refundable deposit</span>
-              <span className="text-border-strong">·</span>
+              <span className="text-ink-3 text-sm">Free to register</span>
+              <span className="text-border-strong">&middot;</span>
               <span className="text-ink-3 text-sm">Cancel anytime</span>
-              <span className="text-border-strong">·</span>
+              <span className="text-border-strong">&middot;</span>
               <span className="text-ink-3 text-sm">Hold any meal</span>
             </motion.div>
           </div>
@@ -126,8 +126,8 @@ export function HeroSection() {
           >
             <div className="relative w-full max-w-[500px] md:max-w-none">
               <FoodPhoto
-                alt="Dal, rice, sabzi and roti — a proper home meal"
-                placeholderDesc="dal · rice · sabzi · roti"
+                alt="Dal, rice, sabzi and roti &mdash; a proper home meal"
+                placeholderDesc="dal &middot; rice &middot; sabzi &middot; roti"
                 rotation={-2}
                 className="w-full"
               />

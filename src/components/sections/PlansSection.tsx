@@ -171,7 +171,7 @@ function PlanRow({ slug, reversed = false }: PlanRowProps) {
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Link href={`/checkout/${plan.slug}`} className="no-underline w-full sm:w-auto">
                 <Button variant={btnVariantMap[slug]} size="lg" fullWidth className="sm:w-auto">
-                  Lock {plan.name} — ₹99
+                  Lock {plan.name} &mdash; free
                 </Button>
               </Link>
               <Link
@@ -225,7 +225,7 @@ export function PlansSection() {
           <p className="text-ink-2 text-lg mt-3 max-w-[580px] mx-auto">
             Pick the one that matches how your body and goals actually work.
             All plans: 50 wholesome meals/month, hold any meal, cancel anytime.
-            ₹99 deposit adjusts against your first bill.
+            Reserve your spot for free. Price locked for 12 months from first delivery.
           </p>
           {/* Discount reminder */}
           <div className="mt-6 inline-flex items-center gap-3 px-5 py-2.5" style={{ border: "1.5px solid var(--border-strong)", borderRadius: "8px" }}>
@@ -235,7 +235,7 @@ export function PlansSection() {
             >
               50% off
             </span>
-            <span className="text-ink-3 text-sm">· launch offer · founding members · closes at 500</span>
+            <span className="text-ink-3 text-sm">&middot; launch offer &middot; founding members &middot; closes at 500</span>
           </div>
         </Container>
       </div>

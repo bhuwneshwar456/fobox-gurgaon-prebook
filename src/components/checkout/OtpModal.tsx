@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 interface OtpModalProps {
   open: boolean;
   phone: string;
-  onVerified: (token: string) => void;
+  onVerified: () => void;
   onCancel: () => void;
 }
 
@@ -97,7 +97,7 @@ export function OtpModal({ open, phone, onVerified, onCancel }: OtpModalProps) {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Invalid OTP");
-      onVerified(data.token);
+      onVerified();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Verification failed");
       setDigits(Array(OTP_LENGTH).fill(""));
@@ -242,3 +242,4 @@ export function OtpModal({ open, phone, onVerified, onCancel }: OtpModalProps) {
     </AnimatePresence>
   );
 }
+

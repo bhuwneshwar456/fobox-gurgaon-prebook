@@ -42,45 +42,33 @@ export default function RefundPolicyPage() {
                 lineHeight: 1.45,
               }}
             >
-              The short version: if we don&apos;t launch by 1 September 2026, you get your ₹99 back within 7 days. No questions asked. That&apos;s the deal we made and the deal we&apos;ll keep.
+              Registration is free &mdash; no payment is collected until launch. Your spot and pricing are locked from the moment you register.
             </p>
           </div>
           <div className="flex flex-col gap-6 text-ink-2" style={{ fontSize: "1.05rem", lineHeight: 1.7 }}>
             <h2 style={{ fontFamily: "var(--font-fraunces), Georgia, serif", color: "var(--ink)", fontSize: "1.4rem", fontWeight: 500 }}>
-              Pre-booking deposit refund
+              Spot cancellation (pre-launch)
             </h2>
             <p>
-              The ₹99 pre-booking deposit is fully refundable in the following situations:
+              Since registration is free, there is nothing to refund before launch. You may cancel your reservation at any time by contacting us.
             </p>
-            <ul className="list-none flex flex-col gap-3 pl-0">
-              {[
-                "fobox does not launch by 1 September 2026 — automatic refund within 7 business days",
-                "You request a refund before the launch date — processed within 7 business days",
-                "Your delivery sector is not serviceable at launch — automatic refund within 7 business days",
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="text-mint flex-shrink-0 mt-1">✓</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
             <h2 style={{ fontFamily: "var(--font-fraunces), Georgia, serif", color: "var(--ink)", fontSize: "1.4rem", fontWeight: 500 }}>
               Post-launch cancellation
             </h2>
             <p>
-              After launch, you may cancel your subscription anytime with 7 days notice before your next billing cycle. No cancellation fees. You may also hold up to 30 meals per month at no charge with advance notice — held meals are not charged or credited, they simply aren&apos;t delivered.
+              After launch, you may cancel your subscription anytime with 7 days notice before your next billing cycle. No cancellation fees. You may also hold up to 30 meals per month at no charge with advance notice &mdash; held meals are not charged or credited, they simply aren&apos;t delivered.
             </p>
             <h2 style={{ fontFamily: "var(--font-fraunces), Georgia, serif", color: "var(--ink)", fontSize: "1.4rem", fontWeight: 500 }}>
               How refunds are processed
             </h2>
             <p>
-              All refunds are credited to the original payment method (card, UPI, or net banking) within 7 business days of approval. Razorpay processing times may vary.
+              Post-launch refunds (e.g. for unfulfilled deliveries) are credited to the original payment method within 7 business days of approval.
             </p>
             <h2 style={{ fontFamily: "var(--font-fraunces), Georgia, serif", color: "var(--ink)", fontSize: "1.4rem", fontWeight: 500 }}>
               Non-refundable situations
             </h2>
             <p>
-              The ₹99 deposit is not refundable after fobox launches and your first delivery has been dispatched.
+              Payments made post-launch are non-refundable after your first delivery has been dispatched.
             </p>
             <h2 style={{ fontFamily: "var(--font-fraunces), Georgia, serif", color: "var(--ink)", fontSize: "1.4rem", fontWeight: 500 }}>
               Contact for refunds

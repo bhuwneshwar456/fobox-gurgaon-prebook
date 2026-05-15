@@ -22,7 +22,8 @@ export async function sendWelcomeEmail(booking: {
   const memberNumber = await getMemberNumber(booking.id);
   const planInfo = PLAN_PRICES[booking.plan] ?? PLAN_PRICES.daily;
 
-  const whatsappGroup = process.env.NEXT_PUBLIC_WHATSAPP_GROUP || SUPPORT_WHATSAPP_URL;
+  const dbSettings = await prisma.settings.findUnique({ where: { id: "global" } });
+  const whatsappGroup = dbSettings?.whatsappGroupUrl || process.env.NEXT_PUBLIC_WHATSAPP_GROUP || SUPPORT_WHATSAPP_URL;
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://fobox.in";
 
   const text = `Hey ${booking.name},
@@ -38,14 +39,10 @@ What you locked:
 → You save: ${planInfo.savings} every month
 → First delivery: ${LAUNCH_DATE_DISPLAY} to ${booking.sector}
 
-Your ₹99 deposit will be credited against your first bill — you won't
-pay it again at launch.
+Your locked price kicks in from your first bill — no upfront payment needed.
 
 You can hold any meal on any day (up to 30/month) — just let us know
 in advance. Cancel anytime with 7 days notice.
-
-If we don't launch by ${LAUNCH_DATE_DISPLAY}, full ₹99 refund within 7 days.
-No questions. That's the deal.
 
 Here's what happens next:
 
@@ -102,3 +99,4 @@ export async function updateSpotsCounter() {
     },
   });
 }
+

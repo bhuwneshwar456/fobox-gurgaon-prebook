@@ -65,8 +65,8 @@ export function FinalCtaSection({ spotsTaken = 347, totalSpots = 500 }: FinalCta
             className="text-paper/70 max-w-[520px]"
             style={{ fontSize: "1.15rem", lineHeight: 1.6 }}
           >
-            Only {remaining} founding member spots left. ₹99 adjusts against your first bill.
-            Full refund if we don&apos;t launch by 1 Sep 2026. After 500, offer closes — next batch pays full price.
+            Only {remaining} founding member spots left. Free to register &mdash; price locked for 12 months.
+            After 500, offer closes &mdash; next batch pays full price.
           </motion.p>
 
           <motion.div
@@ -81,7 +81,7 @@ export function FinalCtaSection({ spotsTaken = 347, totalSpots = 500 }: FinalCta
                 className="text-lg px-10"
                 style={{ minHeight: "64px" } as React.CSSProperties}
               >
-                Lock my plan — ₹99
+                Lock my plan &mdash; free
               </Button>
             </Link>
           </motion.div>
@@ -92,7 +92,7 @@ export function FinalCtaSection({ spotsTaken = 347, totalSpots = 500 }: FinalCta
             transition={{ duration: 0.5, delay: 0.35 }}
             className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-paper/50 text-sm"
           >
-            <span>₹99 refundable deposit</span>
+            <span>Free to register</span>
             <span className="text-paper/20">·</span>
             <span>Hold any meal anytime</span>
             <span className="text-paper/20">·</span>

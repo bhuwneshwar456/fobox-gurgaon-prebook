@@ -17,7 +17,32 @@
       "Bash(curl -s -o /dev/null -w \"/plans/calm %{http_code}\\\\n\" http://localhost:3001/plans/calm)",
       "Bash(curl *)",
       "Bash(npx next *)",
-      "PowerShell(Get-NetTCPConnection *)"
+      "PowerShell(Get-NetTCPConnection *)",
+      "Bash(npm run *)",
+      "Bash(xargs grep -l \"\\\\-\\\\-font-playfair\")",
+      "Bash(xargs sed -i 's/--font-playfair/--font-fraunces/g')",
+      "Bash(sed -i 's/â‚¹/₹/g; s/â€\"/—/g; s/â€˜/'\"'\"'/g; s/â€™/'\"'\"'/g; s/â†'/→/g)",
+      "Bash('s/Â·/·/g \"$f\" *)",
+      "Bash(python3 *)",
+      "Bash(psql *)",
+      "PowerShell(Get-Command *)",
+      "PowerShell(& \"C:\\\\Program Files\\\\PostgreSQL\\\\17\\\\bin\\\\psql.exe\" -U postgres -c \"CREATE DATABASE fobox;\" 2>&1; & \"C:\\\\Program Files\\\\PostgreSQL\\\\17\\\\bin\\\\psql.exe\" -U postgres -c \"CREATE USER fobox_user WITH PASSWORD 'fobox123';\" 2>&1; & \"C:\\\\Program Files\\\\PostgreSQL\\\\17\\\\bin\\\\psql.exe\" -U postgres -c \"GRANT ALL PRIVILEGES ON DATABASE fobox TO fobox_user;\" 2>&1)",
+      "PowerShell($env:PGPASSWORD = \"postgres123\"; & \"C:\\\\Program Files\\\\PostgreSQL\\\\17\\\\bin\\\\psql.exe\" -U postgres -c \"CREATE DATABASE fobox;\" 2>&1; & \"C:\\\\Program Files\\\\PostgreSQL\\\\17\\\\bin\\\\psql.exe\" -U postgres -c \"CREATE USER fobox_user WITH PASSWORD 'fobox123';\" 2>&1; & \"C:\\\\Program Files\\\\PostgreSQL\\\\17\\\\bin\\\\psql.exe\" -U postgres -c \"GRANT ALL PRIVILEGES ON DATABASE fobox TO fobox_user;\" 2>&1)",
+      "PowerShell($env:PGPASSWORD = \"postgres123\"; & \"C:\\\\Program Files\\\\PostgreSQL\\\\17\\\\bin\\\\psql.exe\" -U postgres -c \"GRANT ALL ON SCHEMA public TO fobox_user;\" fobox 2>&1)",
+      "PowerShell($env:PGPASSWORD = \"postgres123\"; & \"C:\\\\Program Files\\\\PostgreSQL\\\\17\\\\bin\\\\psql.exe\" -U postgres -c \"ALTER USER fobox_user CREATEDB;\" 2>&1)",
+      "Bash(Get-ChildItem -Path \"D:\\\\fobox\\\\src\" -Recurse -Directory)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)",
+      "PowerShell(Get-ChildItem -Path \"D:\\\\fobox\\\\src\\\\app\" -Depth 1 | Select-Object Name, @{Name=\"Type\"; Expression={if\\($_.PSIsContainer\\){\"[DIR]\"}else{\"[FILE]\"}}} | Format-Table -AutoSize)",
+      "Bash(Get-ChildItem -Path \"D:\\\\fobox\\\\src\" -Recurse -File)",
+      "PowerShell(head *)",
+      "Bash(git stash *)",
+      "Bash(git show *)",
+      "Bash(git checkout *)",
+      "Bash(cat .prettierrc)",
+      "Bash(cat .prettierrc.json)",
+      "Bash(cat .eslintrc.json)",
+      "Bash(ls *.config.* *.rc* .eslint* .prettier*)"
     ]
   }
 }

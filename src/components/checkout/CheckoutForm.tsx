@@ -4,11 +4,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
-import Script from "next/script";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Plan, gurgaonSectors } from "@/data/plans";
-import { SUPPORT_WHATSAPP_URL, DEPOSIT_AMOUNT_INR } from "@/lib/constants";
+import { SUPPORT_WHATSAPP_URL } from "@/lib/constants";
 import { OtpModal } from "./OtpModal";
 
 const schema = z.object({
@@ -20,31 +19,6 @@ const schema = z.object({
 });
 
 type FormValues = z.infer<typeof schema>;
-
-declare global {
-  interface Window {
-    Razorpay: new (options: RazorpayOptions) => { open: () => void };
-  }
-}
-
-interface RazorpayOptions {
-  key: string;
-  amount: number;
-  currency: string;
-  name: string;
-  description: string;
-  order_id: string;
-  handler: (response: RazorpayResponse) => void;
-  prefill: { name: string; email: string; contact: string };
-  theme: { color: string };
-  modal: { ondismiss: () => void };
-}
-
-interface RazorpayResponse {
-  razorpay_order_id: string;
-  razorpay_payment_id: string;
-  razorpay_signature: string;
-}
 
 export function CheckoutForm({ plan }: { plan: Plan }) {
   const router = useRouter();
@@ -73,7 +47,7 @@ export function CheckoutForm({ plan }: { plan: Plan }) {
     setLoading(false);
   };
 
-  const handleOtpVerified = async (otpToken: string) => {
+  const handleOtpVerified = async () => {
     setOtpOpen(false);
     if (!pendingData) return;
     const data = pendingData;
@@ -81,7 +55,7 @@ export function CheckoutForm({ plan }: { plan: Plan }) {
     setError("");
 
     try {
-      const orderRes = await fetch("/api/razorpay/order", {
+      const res = await fetch("/api/booking/confirm", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -90,7 +64,6 @@ export function CheckoutForm({ plan }: { plan: Plan }) {
           phone: data.phone,
           sector: data.sector,
           allergies: data.allergies,
-          otpToken,
           utmSource: new URLSearchParams(window.location.search).get("utm_source") ?? undefined,
           utmMedium: new URLSearchParams(window.location.search).get("utm_medium") ?? undefined,
           utmCampaign: new URLSearchParams(window.location.search).get("utm_campaign") ?? undefined,
@@ -98,56 +71,21 @@ export function CheckoutForm({ plan }: { plan: Plan }) {
         }),
       });
 
-      const orderData = await orderRes.json();
-      if (!orderRes.ok) throw new Error(orderData.error ?? "Failed to create order");
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error ?? "Failed to confirm booking");
 
-      const options: RazorpayOptions = {
-        key: orderData.keyId,
-        amount: orderData.amount,
-        currency: orderData.currency,
-        name: "fobox",
-        description: `${plan.name} pre-booking`,
-        order_id: orderData.orderId,
-        handler: async (response: RazorpayResponse) => {
-          const verifyRes = await fetch("/api/razorpay/verify", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(response),
-          });
-          const verifyData = await verifyRes.json();
-          if (verifyData.success) {
-            const memberParam = verifyData.memberNumber
-              ? `&member=${verifyData.memberNumber}`
-              : "";
-            router.push(
-              `/success?plan=${plan.slug}&sector=${encodeURIComponent(data.sector)}&name=${encodeURIComponent(data.name)}${memberParam}`
-            );
-          } else {
-            setError(
-              "Payment verification failed. Please message us on WhatsApp and we'll sort it."
-            );
-          }
-        },
-        prefill: { name: data.name, email: "", contact: data.phone },
-        theme: { color: "#14110F" },
-        modal: { ondismiss: () => setLoading(false) },
-      };
-
-      const rzp = new window.Razorpay(options);
-      rzp.open();
+      const memberParam = result.memberNumber ? `&member=${result.memberNumber}` : "";
+      router.push(
+        `/success?plan=${plan.slug}&sector=${encodeURIComponent(data.sector)}&name=${encodeURIComponent(data.name)}${memberParam}`
+      );
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
       setLoading(false);
     }
   };
 
-  const accentMap: Record<string, string> = { calm: "var(--mint)", fit: "var(--saffron)", daily: "var(--turmeric)" };
-  const accent = accentMap[plan.slug] ?? "var(--tomato)";
-
   return (
     <>
-      <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="lazyOnload" />
-
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12 items-start">
           {/* Form */}
@@ -165,7 +103,7 @@ export function CheckoutForm({ plan }: { plan: Plan }) {
               Lock your {plan.name}
             </h1>
             <p className="text-ink-2 mb-10" style={{ fontSize: "1.05rem" }}>
-              One step. ₹99 today. Refunded in full if we don&apos;t launch by 1 September 2026.
+              Reserve your founding member spot. Free to register &mdash; you only pay when we launch.
             </p>
 
             <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-6">
@@ -231,7 +169,6 @@ export function CheckoutForm({ plan }: { plan: Plan }) {
                 {errors.sector && <p className="text-error text-sm mt-1.5" role="alert">{errors.sector.message}</p>}
               </div>
 
-
               {/* Allergies */}
               <div>
                 <label htmlFor="allergies" className="block text-ink font-medium text-sm mb-1.5">
@@ -257,7 +194,7 @@ export function CheckoutForm({ plan }: { plan: Plan }) {
                   {...register("consent")}
                 />
                 <label htmlFor="consent" className="text-ink-2 text-sm leading-relaxed cursor-pointer">
-                  I understand this is a refundable pre-booking deposit, not a final purchase. I&apos;ll receive a full ₹99 refund if fobox doesn&apos;t launch by 1 September 2026.
+                  I understand this is a pre-booking reservation, not a final purchase. My spot and pricing are locked for 12 months from first delivery.
                 </label>
               </div>
               {errors.consent && <p className="text-error text-sm -mt-3" role="alert">{errors.consent.message}</p>}
@@ -284,13 +221,13 @@ export function CheckoutForm({ plan }: { plan: Plan }) {
                 disabled={loading}
                 className="mt-2"
               >
-                {loading ? "Opening payment..." : `Continue — verify & pay ₹${DEPOSIT_AMOUNT_INR}`}
+                {loading ? "Confirming..." : "Reserve my spot — free"}
               </Button>
 
               <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-ink-3 text-xs">
-                <span>🔒 Razorpay secured</span>
+                <span>No payment today</span>
                 <span>·</span>
-                <span>↩ Refundable if no launch</span>
+                <span>50% off locked for 12 months</span>
                 <span>·</span>
                 <span>Cancel anytime</span>
               </div>
@@ -305,7 +242,7 @@ export function CheckoutForm({ plan }: { plan: Plan }) {
             >
               <p className="text-ink-3 text-xs tracking-widest uppercase font-medium mb-5"
                 style={{ fontFamily: "var(--font-geist-mono), monospace" }}>
-                YOUR ORDER
+                YOUR RESERVATION
               </p>
 
               <div className="mb-5 p-4 rounded-[8px]" style={{ backgroundColor: plan.bgHex }}>
@@ -327,22 +264,22 @@ export function CheckoutForm({ plan }: { plan: Plan }) {
               {/* 50% off badge */}
               <div className="mb-5 rounded-[6px] px-4 py-3 text-center" style={{ backgroundColor: "var(--paper-deep)", border: "1.5px solid var(--border-strong)" }}>
                 <p className="font-bold text-lg" style={{ fontFamily: "var(--font-fraunces), Georgia, serif", color: "var(--ink)" }}>
-                  50% off — launch offer
+                  50% off &mdash; launch offer
                 </p>
-                <p className="text-ink-3 text-xs mt-0.5">for 12 months from first delivery · founding members only</p>
+                <p className="text-ink-3 text-xs mt-0.5">for 12 months from first delivery &middot; founding members only</p>
               </div>
 
               <div className="flex flex-col gap-4 mb-6">
                 <div className="flex justify-between items-start gap-4">
                   <div>
-                    <span className="text-ink-2 text-sm block">Paying today</span>
-                    <span className="text-ink-3 text-xs">adjusts against your first bill</span>
+                    <span className="text-ink-2 text-sm block">Due today</span>
+                    <span className="text-ink-3 text-xs">payment collected at launch</span>
                   </div>
                   <span
                     className="text-ink font-medium flex-shrink-0"
                     style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "1.5rem" }}
                   >
-                    ₹99
+                    ₹0
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
@@ -411,7 +348,7 @@ export function CheckoutForm({ plan }: { plan: Plan }) {
                 className="text-ink-3 text-xs leading-relaxed pt-5"
                 style={{ borderTop: "1px solid var(--border)" }}
               >
-                If we don&apos;t launch by 1 September 2026, full ₹99 refund within 7 days. Hold meals anytime. Cancel anytime.
+                Reserve your spot for free. We collect payment only at launch. Hold meals anytime. Cancel anytime.
               </div>
             </div>
           </div>
@@ -427,3 +364,4 @@ export function CheckoutForm({ plan }: { plan: Plan }) {
     </>
   );
 }
+

@@ -120,7 +120,7 @@ export function Footer() {
 
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-ink-3 text-sm">
-            © 2026 fobox · Built in Gurgaon, India
+            &copy; 2026 fobox &middot; Built in Gurgaon, India
           </p>
           <a href="mailto:hello@fobox.in" className="text-ink-3 hover:text-ink text-sm transition-colors no-underline">
             hello@fobox.in
@@ -130,3 +130,4 @@ export function Footer() {
     </footer>
   );
 }
+

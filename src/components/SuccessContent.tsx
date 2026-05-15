@@ -16,7 +16,7 @@ export function SuccessContent() {
     : `You're in.`;
 
   const shareText = `Just locked 50% off my fobox meal subscription for 12 months! 50 wholesome meals/month delivered in Gurgaon from Sep 2026. Join here →`;
-  const shareUrl = typeof window !== "undefined" ? window.location.origin : "https://fobox.in";
+  const shareUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://fobox.in";
   const whatsappShare = `https://wa.me/?text=${encodeURIComponent(shareText + " " + shareUrl)}`;
 
   const whatsappGroup = process.env.NEXT_PUBLIC_WHATSAPP_GROUP || SUPPORT_WHATSAPP_URL;
@@ -82,7 +82,7 @@ export function SuccessContent() {
               {
                 n: "4",
                 title: `First delivery: ${LAUNCH_DATE_SHORT}`,
-                desc: `Your first fobox arrives in ${sector}. Your ₹99 deposit will be credited against that first bill. Hold meals anytime. Cancel anytime.`,
+                desc: `Your first fobox arrives in ${sector}. Your locked price kicks in from this bill. Hold meals anytime. Cancel anytime.`,
               },
             ].map(({ n, title, desc, cta }) => (
               <div key={n} className="flex gap-5">
@@ -145,3 +145,4 @@ export function SuccessContent() {
     </div>
   );
 }
+

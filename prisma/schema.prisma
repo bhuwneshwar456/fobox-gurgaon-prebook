@@ -47,3 +47,10 @@ model Counter {
   seed        Int      @default(347)
   lastUpdated DateTime @default(now())
 }
+
+model Settings {
+  id                  String @id @default("global")
+  whatsappGroupUrl    String @default("https://wa.me/919999999999")
+  counterSeed         Int    @default(347)
+  totalSpots          Int    @default(500)
+}

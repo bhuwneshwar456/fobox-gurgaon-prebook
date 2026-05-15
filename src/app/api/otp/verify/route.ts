@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { verifyOtp } from "@/lib/msg91";
-import { issueOtpToken } from "@/lib/otp-token";
 
 const schema = z.object({
   phone: z.string().regex(/^[6-9]\d{9}$/),
@@ -18,8 +17,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: result.message }, { status: 400 });
     }
 
-    const token = issueOtpToken(phone);
-    return NextResponse.json({ success: true, token });
+    return NextResponse.json({ success: true });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
@@ -31,3 +29,4 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Verification failed" }, { status: 500 });
   }
 }
+

@@ -70,6 +70,10 @@ export async function verifyOtp(phone: string, otp: string): Promise<{ ok: boole
   if (data.type === "success") {
     return { ok: true, message: data.message ?? "OTP verified" };
   }
+  // MSG91 returns this when the OTP was already verified in the same session
+  if (data.message?.toLowerCase().includes("already verified")) {
+    return { ok: true, message: "OTP verified" };
+  }
   return { ok: false, message: data.message ?? "Invalid OTP" };
 }
 
@@ -90,3 +94,4 @@ export async function resendOtp(phone: string): Promise<{ ok: boolean; message: 
   if (data.type === "success") return { ok: true, message: data.message ?? "OTP resent" };
   return { ok: false, message: data.message ?? "Failed to resend OTP" };
 }
+

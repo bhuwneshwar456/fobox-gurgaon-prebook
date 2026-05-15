@@ -27,7 +27,7 @@ export default function FaqPage() {
             >
               Your questions.
             </h1>
-            <p className="text-ink-2 mt-4 text-lg">Everything you need to know before committing ₹99.</p>
+            <p className="text-ink-2 mt-4 text-lg">Everything you need to know before reserving your spot.</p>
           </Container>
         </div>
         <FaqSection />

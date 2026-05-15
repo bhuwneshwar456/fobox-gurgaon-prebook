@@ -48,7 +48,7 @@ export function FounderLetterSection() {
               want to come home to.
             </p>
             <p>
-              ₹99 today says you trust us to build this right. We won&apos;t waste
+              Registering says you trust us to build this right. We won&apos;t waste
               that trust.
             </p>
           </div>

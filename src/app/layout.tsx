@@ -25,11 +25,11 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   title: "fobox — Pre-book India's smartest meal subscription",
   description:
-    "Three meal plans for Gurgaon professionals. Calm for sensitive stomachs, Fit for macro goals, Daily for real home food. Lock 50% off for 12 months with ₹99 today.",
+    "Three meal plans for Gurgaon professionals. Calm for sensitive stomachs, Fit for macro goals, Daily for real home food. Lock 50% off for 12 months. Free to register.",
   keywords: ["meal subscription", "Gurgaon", "tiffin service", "healthy food delivery", "fobox"],
   openGraph: {
     title: "fobox — Food that doesn't fight back.",
-    description: "Lock 50% off your meal subscription for 12 months. ₹99 refundable deposit. Launching 1 September 2026.",
+    description: "Lock 50% off your meal subscription for 12 months. Free to register. Launching 1 September 2026.",
     type: "website",
   },
 };

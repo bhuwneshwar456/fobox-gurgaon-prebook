@@ -39,7 +39,7 @@ export function AnnouncementBar({ spotsTaken = 347, totalSpots = 500 }: Announce
           <span style={{ color: "var(--paper-deep)" }} className="hidden sm:inline">launch offer for founding members</span>
           <span style={{ color: "var(--paper-deep)" }} className="sm:hidden">founding members</span>
           <span style={{ color: "var(--border-strong)" }}>·</span>
-          <span style={{ color: "var(--paper-deep)" }}>₹99 locks your price</span>
+          <span style={{ color: "var(--paper-deep)" }}>free to register — 50% off locked</span>
         </div>
         {/* Message B — counter */}
         <div
@@ -56,10 +56,11 @@ export function AnnouncementBar({ spotsTaken = 347, totalSpots = 500 }: Announce
           <span style={{ color: "var(--turmeric)" }}>◆</span>
           <span style={{ color: "var(--paper-deep)" }}>{spotsTaken} / {totalSpots}</span>
           <span style={{ color: "var(--border-strong)" }}>·</span>
-          <span style={{ color: "var(--border-strong)" }} className="hidden sm:inline">founding spots taken · closes at 500</span>
+          <span style={{ color: "var(--border-strong)" }} className="hidden sm:inline">founding spots taken — closes at 500</span>
           <span style={{ color: "var(--border-strong)" }} className="sm:hidden">spots taken</span>
         </div>
       </div>
     </div>
   );
 }
+

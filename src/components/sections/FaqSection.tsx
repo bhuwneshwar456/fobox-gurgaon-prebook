@@ -7,11 +7,11 @@ import { EyebrowTag } from "@/components/ui/EyebrowTag";
 const faqs = [
   {
     q: "What exactly is the 50% launch offer?",
-    a: "Founding members who pay ₹99 upfront get every meal at 50% off for 12 months from their first delivery. fobox calm at ₹199/meal instead of ₹398. fobox fit at ₹199/meal instead of ₹398. fobox daily at ₹119/meal instead of ₹238. Your ₹99 deposit is credited against your first bill — you don't pay it again. This offer is only for the first 500 people. After that, it's gone.",
+    a: "Founding members who register now get every meal at 50% off for 12 months from their first delivery. fobox calm at ₹199/meal instead of ₹398. fobox fit at ₹199/meal instead of ₹398. fobox daily at ₹119/meal instead of ₹238. Registration is free. This offer is only for the first 500 people. After that, it’s gone.",
   },
   {
     q: "What if you don't launch by September 1, 2026?",
-    a: "Full ₹99 refund within 7 days. No questions, no email chains. That's the deal.",
+    a: "We will notify you by WhatsApp. Since registration is free, there is nothing to refund — your spot simply stays reserved.",
   },
   {
     q: "How does the meal hold facility work?",
@@ -27,7 +27,7 @@ const faqs = [
   },
   {
     q: "What if I don't subscribe after launch?",
-    a: "If you decide not to continue after launch, your ₹99 deposit will be fully used toward a trial tiffin — you get a complete fobox meal to try, on us. Either way, you don't lose your money.",
+    a: "Since registration is free, you can simply not activate when we reach out. No obligation, no charge.",
   },
   {
     q: "How many meals do I get per month?",
