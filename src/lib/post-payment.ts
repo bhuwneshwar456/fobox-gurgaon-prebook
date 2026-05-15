@@ -81,7 +81,7 @@ export async function getMemberNumber(bookingId: string): Promise<number> {
     orderBy: { paidAt: "asc" },
     select: { id: true },
   });
-  const idx = bookings.findIndex((b) => b.id === bookingId);
+  const idx = bookings.findIndex((b: { id: string }) => b.id === bookingId);
   const ordinal = idx === -1 ? bookings.length : idx + 1;
   return seed + ordinal;
 }
