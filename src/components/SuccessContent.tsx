@@ -1,8 +1,15 @@
 "use client";
 import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { SUPPORT_WHATSAPP_URL, LAUNCH_DATE_SHORT } from "@/lib/constants";
+
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+  }
+}
 
 export function SuccessContent() {
   const params = useSearchParams();
@@ -10,6 +17,10 @@ export function SuccessContent() {
   const name = params.get("name") ?? "there";
   const memberNumberParam = params.get("member");
   const memberNumber = memberNumberParam ? parseInt(memberNumberParam, 10) : null;
+
+  useEffect(() => {
+    window.fbq?.("track", "CompleteRegistration");
+  }, []);
 
   const memberLine = memberNumber
     ? `You're founding member #${memberNumber}.`
