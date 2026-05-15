@@ -42,7 +42,9 @@
       "Bash(cat .prettierrc)",
       "Bash(cat .prettierrc.json)",
       "Bash(cat .eslintrc.json)",
-      "Bash(ls *.config.* *.rc* .eslint* .prettier*)"
+      "Bash(ls *.config.* *.rc* .eslint* .prettier*)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'Fix &mdash; entity rendering as literal text in JS string *)"
     ]
   }
 }
