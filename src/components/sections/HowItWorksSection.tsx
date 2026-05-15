@@ -7,7 +7,7 @@ const steps = [
   {
     number: "01",
     title: "Reserve your spot",
-    desc: "Lock in your plan and your price for 12 months. Free to register &mdash; no payment today.",
+    desc: "Lock in your plan and your price for 12 months. Free to register — no payment today.",
   },
   {
     number: "02",
