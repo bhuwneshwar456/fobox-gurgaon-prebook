@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -13,72 +12,141 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const navLinks = [
+    { href: "#plans", label: "Plans" },
+    { href: "#how-it-works", label: "How it works" },
+    { href: "#founders", label: "Founders" },
+    { href: "#faq", label: "FAQ" },
+  ];
+
   return (
     <header
-      className={[
-        "sticky top-0 z-50 border-b border-border transition-all duration-300",
-        scrolled ? "bg-paper/90 backdrop-blur-[12px]" : "bg-paper",
-      ].join(" ")}
-      style={{ height: "72px" }}
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+        height: 87,
+        transition: "background 0.3s",
+        background: scrolled
+          ? "color-mix(in oklch, var(--bg) 90%, transparent)"
+          : "var(--bg)",
+        backdropFilter: scrolled ? "blur(14px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(14px)" : "none",
+      }}
     >
-      <div className="mx-auto max-w-[1240px] px-6 md:px-12 lg:px-20 h-full flex items-center justify-between gap-4">
-        {/* Mobile: hamburger */}
+      <div
+        style={{
+          maxWidth: 1240,
+          margin: "0 auto",
+          padding: "0 clamp(20px, 4vw, 80px)",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 16,
+        }}
+      >
+        {/* Mobile hamburger */}
         <button
-          className="md:hidden p-2 -ml-2 text-ink"
+          className="md:hidden"
+          style={{ padding: 8, marginLeft: -8, background: "none", border: "none", cursor: "pointer" }}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
         >
-          <span className="block w-5 h-0.5 bg-ink mb-1.5 transition-all" style={{ transform: menuOpen ? "rotate(45deg) translate(4px, 6px)" : "" }} />
-          <span className="block w-5 h-0.5 bg-ink mb-1.5 transition-all" style={{ opacity: menuOpen ? 0 : 1 }} />
-          <span className="block w-5 h-0.5 bg-ink transition-all" style={{ transform: menuOpen ? "rotate(-45deg) translate(4px, -6px)" : "" }} />
+          <span style={{ display: "block", width: 20, height: 2, background: "var(--ink)", marginBottom: 6, transition: "transform 0.2s", transform: menuOpen ? "rotate(45deg) translate(4px, 8px)" : "" }} />
+          <span style={{ display: "block", width: 20, height: 2, background: "var(--ink)", marginBottom: 6, transition: "opacity 0.2s", opacity: menuOpen ? 0 : 1 }} />
+          <span style={{ display: "block", width: 20, height: 2, background: "var(--ink)", transition: "transform 0.2s", transform: menuOpen ? "rotate(-45deg) translate(4px, -8px)" : "" }} />
         </button>
 
         {/* Logo */}
         <Link
           href="/"
-          className="text-ink no-underline flex-shrink-0"
           style={{
-            fontFamily: "var(--font-fraunces), Georgia, serif",
-            fontWeight: 600,
-            fontSize: "1.5rem",
+            fontFamily: "var(--font-fraunces), ui-serif, Georgia, serif",
+            fontStyle: "italic",
+            fontWeight: 500,
+            fontSize: 34,
             letterSpacing: "-0.04em",
             lineHeight: 1,
+            color: "var(--ink)",
+            textDecoration: "none",
+            flexShrink: 0,
+            display: "flex",
+            alignItems: "center",
+            gap: 3,
           }}
         >
           fobox
+          <span
+            style={{
+              display: "inline-block",
+              width: 9,
+              height: 9,
+              borderRadius: "50%",
+              background: "var(--clay)",
+              marginBottom: 2,
+              flexShrink: 0,
+            }}
+          />
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
-          {[
-            { href: "#plans", label: "Plans" },
-            { href: "#how-it-works", label: "How it works" },
-            { href: "#founders", label: "Founders" },
-            { href: "#faq", label: "FAQ" },
-          ].map(({ href, label }) => (
+        <nav className="hidden md:flex" style={{ alignItems: "center", gap: 36 }} aria-label="Main navigation">
+          {navLinks.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className="text-ink-2 hover:text-ink text-sm font-medium transition-colors no-underline"
+              style={{
+                fontSize: 15,
+                fontWeight: 400,
+                color: "var(--ink-soft)",
+                textDecoration: "none",
+                transition: "color 0.15s",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.color = "var(--clay)")}
+              onMouseLeave={e => (e.currentTarget.style.color = "var(--ink-soft)")}
             >
               {label}
             </Link>
           ))}
         </nav>
 
-        {/* CTA — desktop only */}
-        <Link href="/checkout/daily" className="hidden md:inline-flex flex-shrink-0 no-underline">
-          <Button variant="primary" size="sm">
+        {/* CTA — desktop */}
+        <Link href="/checkout/daily" className="hidden md:inline-flex" style={{ textDecoration: "none", flexShrink: 0 }}>
+          <button
+            style={{
+              background: "var(--ink)",
+              color: "var(--bg)",
+              border: "none",
+              borderRadius: 999,
+              padding: "12px 22px",
+              fontSize: 14,
+              fontWeight: 500,
+              cursor: "pointer",
+              transition: "background 0.2s",
+            }}
+            onMouseEnter={e => (e.currentTarget.style.background = "var(--clay)")}
+            onMouseLeave={e => (e.currentTarget.style.background = "var(--ink)")}
+          >
             Reserve for free
-          </Button>
+          </button>
         </Link>
 
-        {/* CTA — mobile pill */}
+        {/* CTA — mobile */}
         <Link
           href="/checkout/daily"
-          className="md:hidden flex-shrink-0 no-underline text-xs font-medium text-paper px-3 py-2 rounded-[8px]"
-          style={{ backgroundColor: "var(--ink)" }}
+          className="md:hidden"
+          style={{
+            flexShrink: 0,
+            textDecoration: "none",
+            fontSize: 12,
+            fontWeight: 500,
+            color: "var(--bg)",
+            background: "var(--ink)",
+            padding: "8px 14px",
+            borderRadius: 999,
+          }}
         >
           Reserve free
         </Link>
@@ -86,30 +154,57 @@ export function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-paper border-b border-border py-4 px-6 flex flex-col gap-4">
-          {[
-            { href: "#plans", label: "Plans" },
-            { href: "#how-it-works", label: "How it works" },
-            { href: "#founders", label: "Founders" },
-            { href: "#faq", label: "FAQ" },
-          ].map(({ href, label }) => (
+        <div
+          style={{
+            position: "absolute",
+            top: "100%",
+            left: 0,
+            right: 0,
+            background: "var(--bg)",
+            borderBottom: "1px solid var(--line)",
+            padding: "16px 24px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 0,
+          }}
+          className="md:hidden"
+        >
+          {navLinks.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className="text-ink text-base font-medium no-underline py-2 border-b border-border last:border-0"
               onClick={() => setMenuOpen(false)}
+              style={{
+                fontSize: 16,
+                fontWeight: 500,
+                color: "var(--ink)",
+                textDecoration: "none",
+                padding: "14px 0",
+                borderBottom: "1px solid var(--line)",
+              }}
             >
               {label}
             </Link>
           ))}
-          <Link href="/checkout/daily" onClick={() => setMenuOpen(false)}>
-            <Button variant="primary" size="md" fullWidth>
+          <Link href="/checkout/daily" onClick={() => setMenuOpen(false)} style={{ textDecoration: "none", marginTop: 16 }}>
+            <button
+              style={{
+                width: "100%",
+                background: "var(--clay)",
+                color: "var(--bg)",
+                border: "none",
+                borderRadius: 999,
+                padding: "16px",
+                fontSize: 16,
+                fontWeight: 600,
+                cursor: "pointer",
+              }}
+            >
               Reserve for free
-            </Button>
+            </button>
           </Link>
         </div>
       )}
     </header>
   );
 }
-

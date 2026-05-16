@@ -2,7 +2,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
 interface FinalCtaProps {
@@ -16,89 +15,171 @@ export function FinalCtaSection({ spotsTaken = 347, totalSpots = 500 }: FinalCta
   const inView = useInView(ref, { once: true, margin: "-10%" });
 
   return (
-    <section className="bg-ink py-[clamp(5rem,10vw,9rem)]" ref={ref}>
+    <section
+      ref={ref}
+      style={{
+        background: "var(--clay)",
+        color: "var(--bg)",
+        padding: "130px 0",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Radial blob — saffron top-left */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          top: -200, left: -200,
+          width: 600, height: 600,
+          borderRadius: "50%",
+          background: "radial-gradient(circle, var(--saffron), transparent 70%)",
+          opacity: 0.3,
+          pointerEvents: "none",
+        }}
+      />
+      {/* Radial blob — turmeric bottom-right */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          bottom: -180, right: -180,
+          width: 500, height: 500,
+          borderRadius: "50%",
+          background: "radial-gradient(circle, var(--turmeric), transparent 70%)",
+          opacity: 0.25,
+          pointerEvents: "none",
+        }}
+      />
+
       <Container>
-        <div className="flex flex-col items-center text-center gap-8">
-          {/* Discount — biggest element on screen */}
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
+            maxWidth: 880,
+            margin: "0 auto",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            textAlign: "center",
+            gap: 32,
+          }}
+        >
+          {/* Eyebrow */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.65, ease: "easeOut" }}
-            className="flex flex-col items-center gap-3"
+            transition={{ duration: 0.5 }}
           >
-            <p
-              className="text-paper/50 text-xs tracking-widest uppercase"
-              style={{ fontFamily: "var(--font-geist-mono), monospace" }}
+            <span
+              style={{
+                display: "inline-block",
+                fontSize: 13,
+                padding: "8px 18px",
+                borderRadius: 999,
+                background: "oklch(1 0 0 / 0.15)",
+                border: "1px solid oklch(1 0 0 / 0.2)",
+                letterSpacing: "0.04em",
+                color: "var(--bg)",
+              }}
             >
               LAUNCH OFFER · FOUNDING MEMBERS ONLY
-            </p>
-            <p
-              className="text-tomato leading-none"
-              style={{
-                fontFamily: "var(--font-fraunces), Georgia, serif",
-                fontWeight: 600,
-                fontSize: "clamp(4rem, 12vw, 8rem)",
-                letterSpacing: "-0.02em",
-                lineHeight: 0.95,
-              }}
-            >
-              50% OFF
-            </p>
-            <p
-              className="text-paper"
-              style={{
-                fontFamily: "var(--font-fraunces), Georgia, serif",
-                fontWeight: 500,
-                fontSize: "clamp(1.5rem, 4vw, 2.5rem)",
-                letterSpacing: "-0.02em",
-                lineHeight: 1.1,
-              }}
-            >
-              every meal, for 12 months.
-            </p>
+            </span>
           </motion.div>
 
+          {/* Title */}
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.08 }}
+            style={{
+              fontFamily: "var(--font-fraunces), ui-serif, Georgia, serif",
+              fontWeight: 400,
+              fontSize: "clamp(56px, 8vw, 120px)",
+              lineHeight: 0.95,
+              letterSpacing: "-0.03em",
+              color: "var(--bg)",
+              margin: 0,
+            }}
+          >
+            Lock{" "}
+            <em style={{ fontStyle: "italic", color: "var(--turmeric)" }}>half off</em>
+            <br />for a full year.
+          </motion.h2>
+
+          {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.55, delay: 0.1 }}
-            className="text-paper/70 max-w-[520px]"
-            style={{ fontSize: "1.15rem", lineHeight: 1.6 }}
+            transition={{ duration: 0.55, delay: 0.15 }}
+            style={{
+              fontSize: "clamp(16px,2vw,19px)",
+              lineHeight: 1.5,
+              color: "oklch(1 0 0 / 0.85)",
+              maxWidth: 580,
+              margin: 0,
+            }}
           >
-            Only {remaining} founding member spots left. Free to register &mdash; price locked for 12 months.
-            After 500, offer closes &mdash; next batch pays full price.
+            Only <strong style={{ color: "var(--bg)", fontWeight: 600 }}>{remaining} founding member spots</strong> left.
+            Free to register &mdash; price locked for 12 months from first delivery.
+            After 500, offer closes.
           </motion.p>
 
+          {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.55, delay: 0.2 }}
+            transition={{ duration: 0.55, delay: 0.22 }}
           >
-            <Link href="/checkout/daily" className="no-underline">
-              <Button
-                variant="primary"
-                size="lg"
-                className="text-lg px-10"
-                style={{ minHeight: "64px" } as React.CSSProperties}
+            <Link href="/checkout/daily" style={{ textDecoration: "none" }}>
+              <button
+                style={{
+                  background: "var(--bg)",
+                  color: "var(--clay)",
+                  border: "none",
+                  borderRadius: 999,
+                  padding: "20px 40px",
+                  fontSize: 18,
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  transition: "background 0.2s, color 0.2s",
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.background = "var(--ink)";
+                  e.currentTarget.style.color = "var(--bg)";
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.background = "var(--bg)";
+                  e.currentTarget.style.color = "var(--clay)";
+                }}
               >
                 Lock my plan &mdash; free
-              </Button>
+              </button>
             </Link>
           </motion.div>
 
+          {/* Trust row */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.35 }}
-            className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-paper/50 text-sm"
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "8px 24px",
+              fontSize: 13,
+              color: "oklch(1 0 0 / 0.75)",
+            }}
           >
-            <span>Free to register</span>
-            <span className="text-paper/20">·</span>
-            <span>Hold any meal anytime</span>
-            <span className="text-paper/20">·</span>
-            <span>Cancel anytime</span>
-            <span className="text-paper/20">·</span>
-            <span>Launches 1 Sep 2026</span>
+            {["Free to register", "Hold any meal", "Cancel anytime", "Launches 1 Sep 2026"].map((t, i) => (
+              <span key={t} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                {i > 0 && <span style={{ width: 4, height: 4, borderRadius: "50%", background: "oklch(1 0 0 / 0.25)", display: "inline-block" }} />}
+                {t}
+              </span>
+            ))}
           </motion.div>
         </div>
       </Container>

@@ -10,6 +10,7 @@ import { FoundersSection } from "@/components/sections/FoundersSection";
 import { FounderLetterSection } from "@/components/sections/FounderLetterSection";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { FinalCtaSection } from "@/components/sections/FinalCtaSection";
+import { MarqueeStrip } from "@/components/sections/MarqueeStrip";
 import { prisma } from "@/lib/prisma";
 import { COUNTER_SEED, TOTAL_SPOTS } from "@/lib/constants";
 
@@ -36,6 +37,7 @@ export default async function HomePage() {
       <Header />
       <main>
         <HeroSection />
+        <MarqueeStrip />
         <CounterSection spotsTaken={spotsTaken} totalSpots={totalSpots} />
         <ProblemSection />
         <PlansSection />

@@ -44,7 +44,18 @@
       "Bash(cat .eslintrc.json)",
       "Bash(ls *.config.* *.rc* .eslint* .prettier*)",
       "Bash(git add *)",
-      "Bash(git commit -m 'Fix &mdash; entity rendering as literal text in JS string *)"
+      "Bash(git commit -m 'Fix &mdash; entity rendering as literal text in JS string *)",
+      "Bash(git commit -m 'Add PM2 ecosystem config for port 3003 *)",
+      "Bash(git commit -m 'Add Meta Pixel 1921667715152090 with CompleteRegistration event on success *)",
+      "Bash(Copy-Item *)",
+      "PowerShell(node -e \"require\\('sharp'\\); console.log\\('ok'\\)\" 2>&1)",
+      "PowerShell(Copy-Item *)",
+      "Bash(Select-Object FullName)",
+      "Bash(Sort-Object FullName)",
+      "Bash(powershell *)",
+      "Bash(Get-Content \"C:\\\\Users\\\\Admin\\\\Downloads\\\\Fobox Redesign v2 _standalone_.html\" -Encoding UTF8)",
+      "Bash(Select-Object -First 5)",
+      "Bash(identify \"D:/fobox/public/thali.png\")"
     ]
   }
 }

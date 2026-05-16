@@ -7,79 +7,114 @@ import { EyebrowTag } from "@/components/ui/EyebrowTag";
 const faqs = [
   {
     q: "What exactly is the 50% launch offer?",
-    a: "Founding members who register now get every meal at 50% off for 12 months from their first delivery. fobox calm at ₹199/meal instead of ₹398. fobox fit at ₹199/meal instead of ₹398. fobox daily at ₹119/meal instead of ₹238. Registration is free. This offer is only for the first 500 people. After that, it’s gone.",
+    a: "First 500 members lock 50% off every meal for 12 months from your first delivery. No payment today — you reserve free, you pay only when meals start arriving on 01 September 2026. Price stays locked even if retail goes up.",
   },
   {
-    q: "What if you don't launch by September 1, 2026?",
-    a: "We will notify you by WhatsApp. Since registration is free, there is nothing to refund — your spot simply stays reserved.",
+    q: "What if you don't launch by 01 September 2026?",
+    a: "If we miss the launch date, your founding price extends by the delay. Three months late? You get a 15-month lock instead of 12. We over-communicate this. You decide when to walk.",
   },
   {
     q: "How does the meal hold facility work?",
-    a: "You can hold up to 30 meals per month. Just let us know in advance and we skip that meal — no charge, no credit note, no questions.",
+    a: "Going to Goa for a week? Pause those meals from the app — no penalty, no need to justify. Held meals roll over into the next month, up to a 30-day cap.",
   },
   {
     q: "Can I cancel my subscription anytime?",
-    a: "Yes. Cancel anytime with 7 days notice before your next billing cycle. No lock-in, no cancellation fees, no questions about why.",
+    a: "Yes. 7-day notice. No exit fee, no \"are you sure\" guilt-trip. You'd be surprised how rarely we see it.",
   },
   {
     q: "Which sectors of Gurgaon do you deliver to?",
-    a: "DLF Phases 1–5, Golf Course Road and Extension, Sohna Road (up to Sector 58), Cyber City, Udyog Vihar, and sectors 14 to 58. Your sector in the form? We deliver there.",
-  },
-  {
-    q: "What if I don't subscribe after launch?",
-    a: "Since registration is free, you can simply not activate when we reach out. No obligation, no charge.",
+    a: "At launch: Sectors 14, 15, 28, 29, 40–46, 50–57, and Cyber Hub / Golf Course Road / DLF Phase 1–5. We'll expand based on founding-member density.",
   },
   {
     q: "How many meals do I get per month?",
-    a: "50 wholesome meals per month. Each delivery is a complete multi-dish meal. You can hold up to 30 on any day you don't want delivery — no charge.",
+    a: "50 meals — roughly two a day, five days a week, plus a few weekend wildcards. Any unused meals can be held and rolled over.",
   },
   {
     q: "What is your FSSAI status?",
-    a: "Our kitchen partner is already FSSAI-registered and operational. Our own FSSAI registration is applied and in process. We'll have it well before the September 2026 launch.",
+    a: "Application in process — central licence filed Q1 2026. We won't ship a single meal without it. We'll publish the licence number on this page the day it lands.",
   },
 ];
 
-function FaqItem({ q, a }: { q: string; a: string; index: number }) {
+function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="border-b border-border">
+    <div
+      style={{
+        background: open ? "var(--bg-2)" : "var(--bg)",
+        border: `1px solid ${open ? "var(--clay)" : "var(--line)"}`,
+        borderRadius: 16,
+        padding: "24px 28px",
+        cursor: "pointer",
+        transition: "border-color 0.2s, background 0.2s",
+      }}
+    >
       <button
         onClick={() => setOpen(!open)}
-        className="w-full text-left py-5 flex items-start justify-between gap-4 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tomato focus-visible:ring-offset-2"
+        style={{
+          width: "100%",
+          display: "grid",
+          gridTemplateColumns: "1fr 32px",
+          gap: 24,
+          alignItems: "start",
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          textAlign: "left",
+          padding: 0,
+        }}
         aria-expanded={open}
       >
         <span
           style={{
-            fontFamily: "var(--font-fraunces), Georgia, serif",
+            fontFamily: "var(--font-fraunces), ui-serif, Georgia, serif",
             fontWeight: 500,
-            fontSize: "clamp(1rem, 2vw, 1.2rem)",
+            fontSize: 22,
+            lineHeight: 1.25,
+            letterSpacing: "-0.01em",
             color: "var(--ink)",
-            lineHeight: 1.3,
           }}
         >
           {q}
         </span>
+
+        {/* Circular + toggle */}
         <span
-          className="flex-shrink-0 w-6 h-6 flex items-center justify-center text-ink-3 transition-transform duration-300"
-          style={{ transform: open ? "rotate(45deg)" : "rotate(0deg)" }}
           aria-hidden="true"
+          style={{
+            width: 32, height: 32, borderRadius: "50%",
+            border: `1px solid ${open ? "transparent" : "var(--line)"}`,
+            background: open ? "var(--clay)" : "transparent",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            flexShrink: 0,
+            transition: "background 0.25s, border-color 0.25s, transform 0.25s",
+            transform: open ? "rotate(45deg)" : "rotate(0deg)",
+            color: open ? "var(--bg)" : "var(--ink-mute)",
+            fontSize: 18,
+            lineHeight: 1,
+          }}
         >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M8 2v12M2 8h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
+          +
         </span>
       </button>
+
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="overflow-hidden"
+            transition={{ duration: 0.28, ease: "easeOut" }}
+            style={{ overflow: "hidden" }}
           >
-            <p className="text-ink-2 text-base leading-relaxed pb-5 pr-10">
+            <p style={{
+              fontSize: 15,
+              color: "var(--ink-soft)",
+              lineHeight: 1.6,
+              marginTop: 16,
+              paddingRight: 56,
+              maxWidth: 720,
+            }}>
               {a}
             </p>
           </motion.div>
@@ -92,48 +127,58 @@ function FaqItem({ q, a }: { q: string; a: string; index: number }) {
 export function FaqSection() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
-  const half = Math.ceil(faqs.length / 2);
 
   return (
-    <section id="faq" className="bg-paper py-[clamp(5rem,10vw,9rem)]" ref={ref}>
+    <section
+      id="faq"
+      ref={ref}
+      style={{
+        background: "var(--bg-2)",
+        borderTop: "1px solid var(--line)",
+        borderBottom: "1px solid var(--line)",
+        padding: "clamp(5rem,10vw,9rem) 0",
+      }}
+    >
       <Container>
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="mb-12"
+          style={{ marginBottom: "clamp(32px,5vw,56px)", textAlign: "center" }}
         >
-          <EyebrowTag className="mb-4">QUESTIONS</EyebrowTag>
+          <EyebrowTag>QUESTIONS</EyebrowTag>
           <h2
             style={{
-              fontFamily: "var(--font-fraunces), Georgia, serif",
-              fontWeight: 500,
-              fontSize: "clamp(2rem, 4vw, 3rem)",
-              letterSpacing: "-0.02em",
-              lineHeight: 1.1,
+              fontFamily: "var(--font-fraunces), ui-serif, Georgia, serif",
+              fontWeight: 400,
+              fontSize: "clamp(44px, 6vw, 84px)",
+              letterSpacing: "-0.025em",
+              lineHeight: 1.0,
               color: "var(--ink)",
+              margin: "24px 0 0",
             }}
           >
-            The honest answers.
+            The <em style={{ fontStyle: "italic", color: "var(--clay)" }}>honest</em> answers.
           </h2>
         </motion.div>
 
+        {/* Accordion list — single column, max 880px centered */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0"
+          transition={{ duration: 0.6, delay: 0.1 }}
+          style={{
+            maxWidth: 880,
+            margin: "0 auto",
+            display: "flex",
+            flexDirection: "column",
+            gap: 12,
+          }}
         >
-          <div>
-            {faqs.slice(0, half).map((faq, i) => (
-              <FaqItem key={faq.q} q={faq.q} a={faq.a} index={i} />
-            ))}
-          </div>
-          <div>
-            {faqs.slice(half).map((faq, i) => (
-              <FaqItem key={faq.q} q={faq.q} a={faq.a} index={i + half} />
-            ))}
-          </div>
+          {faqs.map((faq) => (
+            <FaqItem key={faq.q} q={faq.q} a={faq.a} />
+          ))}
         </motion.div>
       </Container>
     </section>

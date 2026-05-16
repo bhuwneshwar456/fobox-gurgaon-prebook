@@ -1,45 +1,112 @@
 @import "tailwindcss";
 
+/* ── Design tokens ─────────────────────────────────────────── */
 :root {
-  --paper: #FBF7F1;
-  --paper-deep: #F5EDDD;
-  --canvas: #FFFFFF;
-  --ink: #14110F;
-  --ink-2: #3A322C;
-  --ink-3: #7A6D62;
-  --tomato: #D63A2F;
-  --turmeric: #E8A317;
-  --mint: #2D6A4F;
-  --saffron: #D17A22;
-  --calm-bg: #E8F0E5;
-  --fit-bg: #F5E4D0;
-  --daily-bg: #F9E8B8;
-  --border: #E8DDC9;
-  --border-strong: #C7B398;
+  --bg:        oklch(0.95 0.030 80);
+  --bg-2:      oklch(0.91 0.035 75);
+  --paper:     oklch(0.88 0.040 70);
+  --ink:       oklch(0.24 0.045 50);
+  --ink-soft:  oklch(0.42 0.040 55);
+  --ink-mute:  oklch(0.58 0.035 60);
+  --line:      oklch(0.80 0.040 65);
+  --turmeric:  oklch(0.78 0.17 78);
+  --saffron:   oklch(0.70 0.21 55);
+  --clay:      oklch(0.55 0.19 35);
+  --clay-deep: oklch(0.45 0.18 32);
+  --sabzi:     oklch(0.58 0.13 135);
+  --kadhi:     oklch(0.85 0.12 95);
+  --raita:     oklch(0.92 0.025 110);
+
+  /* legacy aliases kept so existing components don't break */
+  --paper-deep:    var(--bg-2);
+  --canvas:        #FFFFFF;
+  --ink-2:         var(--ink-soft);
+  --ink-3:         var(--ink-mute);
+  --tomato:        var(--clay);
+  --mint:          var(--sabzi);
+  --border:        var(--line);
+  --border-strong: oklch(0.70 0.040 65);
+  --calm-bg:       oklch(0.93 0.025 130);
+  --fit-bg:        oklch(0.93 0.025 130);
+  --daily-bg:      var(--kadhi);
 }
 
+/* ── Tailwind v4 theme ─────────────────────────────────────── */
 @theme inline {
-  --color-paper: #FBF7F1;
-  --color-paper-deep: #F5EDDD;
-  --color-canvas: #FFFFFF;
-  --color-ink: #14110F;
-  --color-ink-2: #3A322C;
-  --color-ink-3: #7A6D62;
-  --color-tomato: #D63A2F;
-  --color-turmeric: #E8A317;
-  --color-mint: #2D6A4F;
-  --color-saffron: #D17A22;
-  --color-calm-bg: #E8F0E5;
-  --color-fit-bg: #F5E4D0;
-  --color-daily-bg: #F9E8B8;
-  --color-border: #E8DDC9;
-  --color-border-strong: #C7B398;
-  --color-success: #2D6A4F;
-  --color-error: #B91C1C;
+  --color-bg:          oklch(0.95 0.030 80);
+  --color-bg-2:        oklch(0.91 0.035 75);
+  --color-paper:       oklch(0.88 0.040 70);
+  --color-ink:         oklch(0.24 0.045 50);
+  --color-ink-soft:    oklch(0.42 0.040 55);
+  --color-ink-mute:    oklch(0.58 0.035 60);
+  --color-line:        oklch(0.80 0.040 65);
+  --color-turmeric:    oklch(0.78 0.17 78);
+  --color-saffron:     oklch(0.70 0.21 55);
+  --color-clay:        oklch(0.55 0.19 35);
+  --color-clay-deep:   oklch(0.45 0.18 32);
+  --color-sabzi:       oklch(0.58 0.13 135);
+  --color-kadhi:       oklch(0.85 0.12 95);
+  --color-raita:       oklch(0.92 0.025 110);
+
+  /* legacy aliases */
+  --color-paper-deep:  oklch(0.91 0.035 75);
+  --color-canvas:      #FFFFFF;
+  --color-ink-2:       oklch(0.42 0.040 55);
+  --color-ink-3:       oklch(0.58 0.035 60);
+  --color-tomato:      oklch(0.55 0.19 35);
+  --color-mint:        oklch(0.58 0.13 135);
+  --color-border:      oklch(0.80 0.040 65);
+  --color-border-strong: oklch(0.70 0.040 65);
+  --color-success:     oklch(0.58 0.13 135);
+  --color-error:       #B91C1C;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-fraunces);
 }
 
+/* ── Wave underline (hero title) ───────────────────────────── */
+.wave {
+  color: var(--clay);
+  font-style: italic;
+  position: relative;
+  white-space: nowrap;
+}
+.wave::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -0.08em;
+  height: 0.18em;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 8' preserveAspectRatio='none'><path d='M0,4 Q15,0 30,4 T60,4' fill='none' stroke='%23c25932' stroke-width='2' stroke-linecap='round'/></svg>");
+  background-repeat: repeat-x;
+  background-size: 60px 8px;
+}
+
+/* ── Stamp (hero badge) ────────────────────────────────────── */
+.stamp {
+  position: relative;
+  flex-shrink: 0;
+}
+.stamp::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed oklch(1 0 0 / 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ── Plans grid ─────────────────────────────────────────────── */
+.plans-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+@media (min-width: 768px) {
+  .plans-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -48,26 +115,158 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ── Body — warm radial wash (fixed so it doesn't scroll) ──── */
 body {
-  background-color: var(--paper);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse 800px 400px at 15% 10%, oklch(0.90 0.045 75 / 0.7), transparent),
+    radial-gradient(ellipse 600px 500px at 90% 50%, oklch(0.88 0.040 70 / 0.5), transparent);
+  background-attachment: fixed;
   color: var(--ink);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── Focus ─────────────────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid var(--tomato);
+  outline: 2px solid var(--clay);
   outline-offset: 3px;
   border-radius: 2px;
 }
 
+/* ── Hero grid ─────────────────────────────────────────────── */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(32px, 5vw, 56px);
+  align-items: center;
+  min-height: 80vh;
+  overflow: visible;
+}
+@media (min-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+}
+
+/* ── Thali image sizing ─────────────────────────────────────── */
+.thali-img {
+  width: 100%;
+  max-width: 480px;
+}
+@media (min-width: 768px) {
+  .thali-img {
+    width: 120%;
+    max-width: 720px;
+  }
+}
+
+/* ── Founders grid ──────────────────────────────────────────── */
+.founder-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  overflow: hidden;
+}
+@media (min-width: 640px) {
+  .founder-card {
+    grid-template-columns: 200px 1fr;
+  }
+}
+
+/* ── Founders outer grid ────────────────────────────────────── */
+.founders-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+@media (min-width: 768px) {
+  .founders-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── Steps grid ─────────────────────────────────────────────── */
+.steps-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 640px) {
+  .steps-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 1024px) {
+  .steps-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ── Footer top grid ────────────────────────────────────────── */
+.footer-top-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--line);
+}
+@media (min-width: 768px) {
+  .footer-top-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+}
+
+/* ── Footer hover utilities ────────────────────────────────── */
+.footer-social:hover  { background: var(--ink) !important; color: var(--bg) !important; }
+.footer-link:hover    { color: var(--ink) !important; }
+.footer-email:hover   { color: var(--ink) !important; }
+
+/* ── Hero CTA arrow micro-animation ───────────────────────── */
+.hero-cta-primary:hover .cta-arrow {
+  transform: translateX(3px);
+}
+.cta-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
 @media (prefers-reduced-motion: reduce) {
+  .hero-cta-primary:hover .cta-arrow { transform: none; }
+}
+
+/* ── Marquee animation ─────────────────────────────────────── */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Announcement bar text — horizontal marquee on mobile only ── */
+@keyframes bar-h-scroll {
+  0%        { transform: translateX(0); }
+  15%       { transform: translateX(0); }          /* pause at start */
+  85%       { transform: translateX(-60%); }       /* scroll left */
+  100%      { transform: translateX(-60%); }       /* pause at end */
+}
+
+/* Desktop: static, no scroll */
+.bar-scroll-mobile {
+  display: inline;
+}
+
+/* Mobile: duplicate text inside so it loops, animate */
+@media (max-width: 639px) {
+  .bar-scroll-mobile {
+    display: inline-flex;
+    animation: bar-h-scroll 6s ease-in-out infinite alternate;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar-scroll-mobile { animation: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation-play-state: paused !important;
+  }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
-

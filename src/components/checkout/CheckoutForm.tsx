@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Plan, gurgaonSectors } from "@/data/plans";
 import { SUPPORT_WHATSAPP_URL } from "@/lib/constants";
-import { OtpModal } from "./OtpModal";
 
 const schema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -24,8 +23,6 @@ export function CheckoutForm({ plan }: { plan: Plan }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [otpOpen, setOtpOpen] = useState(false);
-  const [pendingData, setPendingData] = useState<FormValues | null>(null);
 
   const {
     register,
@@ -35,24 +32,9 @@ export function CheckoutForm({ plan }: { plan: Plan }) {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     setError("");
-    setPendingData(data);
-    setOtpOpen(true);
-  };
-
-  const handleOtpCancel = () => {
-    setOtpOpen(false);
-    setPendingData(null);
-    setLoading(false);
-  };
-
-  const handleOtpVerified = async () => {
-    setOtpOpen(false);
-    if (!pendingData) return;
-    const data = pendingData;
     setLoading(true);
-    setError("");
 
     try {
       const res = await fetch("/api/booking/confirm", {
@@ -85,8 +67,7 @@ export function CheckoutForm({ plan }: { plan: Plan }) {
   };
 
   return (
-    <>
-      <Container>
+    <Container>
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12 items-start">
           {/* Form */}
           <div>
@@ -354,14 +335,6 @@ export function CheckoutForm({ plan }: { plan: Plan }) {
           </div>
         </div>
       </Container>
-
-      <OtpModal
-        open={otpOpen}
-        phone={pendingData?.phone ?? ""}
-        onVerified={handleOtpVerified}
-        onCancel={handleOtpCancel}
-      />
-    </>
   );
 }
 

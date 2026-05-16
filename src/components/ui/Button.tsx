@@ -11,19 +11,19 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantStyles: Record<Variant, string> = {
-  primary: "bg-tomato text-paper hover:bg-[#bf3226] border-tomato",
-  secondary: "bg-ink text-paper hover:bg-ink-2 border-ink",
-  mint: "bg-mint text-paper hover:bg-[#245940] border-mint",
-  saffron: "bg-saffron text-paper hover:bg-[#b96b1e] border-saffron",
-  turmeric: "bg-turmeric text-ink hover:bg-[#cc8f12] border-turmeric",
-  ghost: "bg-transparent text-ink border-ink hover:bg-paper-deep",
-  whatsapp: "bg-[#25D366] text-white hover:bg-[#1eba57] border-[#25D366]",
+  primary:   "bg-clay text-bg hover:bg-clay-deep border-clay",
+  secondary: "bg-ink text-bg hover:bg-ink-soft border-ink",
+  mint:      "bg-sabzi text-bg hover:opacity-90 border-sabzi",
+  saffron:   "bg-saffron text-ink hover:opacity-90 border-saffron",
+  turmeric:  "bg-turmeric text-ink hover:opacity-90 border-turmeric",
+  ghost:     "bg-transparent text-ink border-line hover:border-clay hover:text-clay",
+  whatsapp:  "bg-[#25D366] text-white hover:bg-[#1eba57] border-[#25D366]",
 };
 
 const sizeStyles = {
   sm: "px-4 py-2 text-sm min-h-[40px]",
   md: "px-6 py-3 text-base min-h-[48px]",
-  lg: "px-8 py-4 text-base min-h-[56px]",
+  lg: "px-[30px] py-[18px] text-base min-h-[56px]",
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -36,8 +36,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         transition={{ duration: 0.15 }}
         className={[
           "inline-flex items-center justify-center gap-2 font-medium leading-none cursor-pointer",
-          "border-2 rounded-[8px] transition-colors duration-150",
-          "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-tomato",
+          "border rounded-[999px] transition-all duration-200",
+          "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-clay",
           "disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none",
           variantStyles[variant],
           sizeStyles[size],
