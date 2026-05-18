@@ -49,7 +49,7 @@ export function HeroSection() {
                 >
                   ●
                 </span>
-                Made in <strong style={{ fontWeight: 600, color: "var(--ink)", marginLeft: 4 }}>Gurgaon</strong>
+                Made for <strong style={{ fontWeight: 600, color: "var(--ink)", marginLeft: 4 }}>Gurgaon</strong>
                 &nbsp;·&nbsp;launching&nbsp;
                 <strong style={{ fontWeight: 600, color: "var(--ink)" }}>01.09.2026</strong>
               </span>

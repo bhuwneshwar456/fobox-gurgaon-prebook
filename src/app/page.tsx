@@ -33,8 +33,10 @@ export default async function HomePage() {
 
   return (
     <>
-      <AnnouncementBar spotsTaken={spotsTaken} totalSpots={totalSpots} />
-      <Header />
+      <div style={{ position: "sticky", top: 0, zIndex: 50 }}>
+        <AnnouncementBar spotsTaken={spotsTaken} totalSpots={totalSpots} />
+        <Header />
+      </div>
       <main>
         <HeroSection />
         <MarqueeStrip />

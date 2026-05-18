@@ -22,9 +22,8 @@ export function Header() {
   return (
     <header
       style={{
-        position: "sticky",
-        top: 0,
-        zIndex: 50,
+        position: "relative",
+        zIndex: 1,
         height: 87,
         transition: "background 0.3s",
         background: scrolled

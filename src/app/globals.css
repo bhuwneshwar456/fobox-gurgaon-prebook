@@ -235,30 +235,6 @@ body {
   to   { transform: translateX(-50%); }
 }
 
-/* ── Announcement bar text — horizontal marquee on mobile only ── */
-@keyframes bar-h-scroll {
-  0%        { transform: translateX(0); }
-  15%       { transform: translateX(0); }          /* pause at start */
-  85%       { transform: translateX(-60%); }       /* scroll left */
-  100%      { transform: translateX(-60%); }       /* pause at end */
-}
-
-/* Desktop: static, no scroll */
-.bar-scroll-mobile {
-  display: inline;
-}
-
-/* Mobile: duplicate text inside so it loops, animate */
-@media (max-width: 639px) {
-  .bar-scroll-mobile {
-    display: inline-flex;
-    animation: bar-h-scroll 6s ease-in-out infinite alternate;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bar-scroll-mobile { animation: none !important; }
-}
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
