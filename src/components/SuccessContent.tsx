@@ -1,6 +1,6 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { SUPPORT_WHATSAPP_URL, LAUNCH_DATE_SHORT } from "@/lib/constants";
@@ -17,9 +17,16 @@ export function SuccessContent() {
   const name = params.get("name") ?? "there";
   const memberNumberParam = params.get("member");
   const memberNumber = memberNumberParam ? parseInt(memberNumberParam, 10) : null;
+  const [whatsappGroup, setWhatsappGroup] = useState(
+    process.env.NEXT_PUBLIC_WHATSAPP_GROUP || SUPPORT_WHATSAPP_URL
+  );
 
   useEffect(() => {
     window.fbq?.("track", "CompleteRegistration");
+    fetch("/api/settings")
+      .then((r) => r.json())
+      .then((d) => { if (d.whatsappGroupUrl) setWhatsappGroup(d.whatsappGroupUrl); })
+      .catch(() => {});
   }, []);
 
   const memberLine = memberNumber
@@ -29,8 +36,6 @@ export function SuccessContent() {
   const shareText = `Just locked 50% off my fobox meal subscription for 12 months! 50 wholesome meals/month delivered in Gurgaon from Sep 2026. Join here →`;
   const shareUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://fobox.in";
   const whatsappShare = `https://wa.me/?text=${encodeURIComponent(shareText + " " + shareUrl)}`;
-
-  const whatsappGroup = process.env.NEXT_PUBLIC_WHATSAPP_GROUP || SUPPORT_WHATSAPP_URL;
 
   return (
     <div className="flex justify-center py-24 px-6">
