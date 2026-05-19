@@ -1,16 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const navLinks = [
     { href: "#plans", label: "Plans" },
@@ -26,11 +19,7 @@ export function Header() {
         zIndex: 1,
         height: 87,
         transition: "background 0.3s",
-        background: scrolled
-          ? "color-mix(in oklch, var(--bg) 90%, transparent)"
-          : "var(--bg)",
-        backdropFilter: scrolled ? "blur(14px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(14px)" : "none",
+        background: "var(--bg)",
       }}
     >
       <div
