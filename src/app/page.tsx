@@ -1,5 +1,4 @@
-import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
-import { Header } from "@/components/layout/Header";
+import { StickyHeader } from "@/components/layout/StickyHeader";
 import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { CounterSection } from "@/components/sections/CounterSection";
@@ -33,10 +32,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <div style={{ position: "sticky", top: 0, zIndex: 50 }}>
-        <AnnouncementBar spotsTaken={spotsTaken} totalSpots={totalSpots} />
-        <Header />
-      </div>
+      <StickyHeader spotsTaken={spotsTaken} totalSpots={totalSpots} />
       <main>
         <HeroSection />
         <MarqueeStrip />
