@@ -33,10 +33,12 @@ export default async function HomePage() {
 
   return (
     <>
-      <div style={{ position: "sticky", top: 0, zIndex: 50 }}>
+      <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50 }}>
         <AnnouncementBar spotsTaken={spotsTaken} totalSpots={totalSpots} />
         <Header />
       </div>
+      {/* spacer so content starts below the fixed bar (38px announcement + 87px header) */}
+      <div style={{ height: 125 }} aria-hidden />
       <main>
         <HeroSection />
         <MarqueeStrip />
