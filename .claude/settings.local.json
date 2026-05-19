@@ -55,7 +55,8 @@
       "Bash(powershell *)",
       "Bash(Get-Content \"C:\\\\Users\\\\Admin\\\\Downloads\\\\Fobox Redesign v2 _standalone_.html\" -Encoding UTF8)",
       "Bash(Select-Object -First 5)",
-      "Bash(identify \"D:/fobox/public/thali.png\")"
+      "Bash(identify \"D:/fobox/public/thali.png\")",
+      "Bash(pm2 list *)"
     ]
   }
 }
